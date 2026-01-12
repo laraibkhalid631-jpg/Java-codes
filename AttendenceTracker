@@ -1,0 +1,75 @@
+import java.util.Scanner;
+
+public class AttendanceTracker {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String[] students = new String[50];  // Array to store student names
+        int[] attendance = new int[50];      // Array to store attendance count
+        int studentCount = 0;
+
+        while(true) {
+            System.out.println("\n=== Attendance Tracker Menu ===");
+            System.out.println("1. Add Student");
+            System.out.println("2. Mark Attendance");
+            System.out.println("3. View Attendance Report");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
+            int choice = sc.nextInt();
+            sc.nextLine(); // consume newline
+
+            switch(choice) {
+                case 1:
+                    // Add student
+                    if(studentCount < students.length) {
+                        System.out.print("Enter student name: ");
+                        String name = sc.nextLine();
+                        students[studentCount] = name;
+                        attendance[studentCount] = 0;
+                        studentCount++;
+                        System.out.println("Student added successfully!");
+                    } else {
+                        System.out.println("Cannot add more students!");
+                    }
+                    break;
+
+                case 2:
+                    // Mark attendance
+                    if(studentCount == 0) {
+                        System.out.println("No students added yet!");
+                    } else {
+                        System.out.println("Marking attendance for all students:");
+                        for(int i = 0; i < studentCount; i++) {
+                            System.out.print("Is " + students[i] + " present? (y/n): ");
+                            char present = sc.nextLine().charAt(0);
+                            if(present == 'y' || present == 'Y') {
+                                attendance[i]++;
+                            }
+                        }
+                        System.out.println("Attendance marked successfully!");
+                    }
+                    break;
+
+                case 3:
+                    // View attendance report
+                    if(studentCount == 0) {
+                        System.out.println("No students added yet!");
+                    } else {
+                        System.out.println("\n=== Attendance Report ===");
+                        for(int i = 0; i < studentCount; i++) {
+                            System.out.println(students[i] + " - " + attendance[i] + " days present");
+                        }
+                    }
+                    break;
+
+                case 4:
+                    // Exit
+                    System.out.println("Exiting Attendance Tracker. Goodbye!");
+                    System.exit(0);
+
+                default:
+                    System.out.println("Invalid option! Try again.");
+            }
+        }
+    }
+}
