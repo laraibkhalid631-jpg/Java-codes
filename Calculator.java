@@ -6,14 +6,14 @@ public class Calculator {
 
         Scanner sc = new Scanner(System.in);
 
-        // User se numbers lena
+        // Take number from user
         System.out.print("Enter first number: ");
         double num1 = sc.nextDouble();
 
         System.out.print("Enter second number: ");
         double num2 = sc.nextDouble();
 
-        // User se operator lena
+        // Take operator from user
         System.out.print("Choose operation (+, -, *, /): ");
         char operator = sc.next().charAt(0);
 
